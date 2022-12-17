@@ -1,8 +1,6 @@
 import React from 'react';
 import sha256 from 'crypto-js/sha256';
 
-
-
 function App() {
     return (
         <div>
@@ -13,8 +11,6 @@ function App() {
         </div>
     );
 }
-
-
 
 const BuyTicket = () => {
     const apiurl = "http://localhost:80/buyerdb/add"
