@@ -13,7 +13,7 @@ function App() {
 }
 
 const BuyTicket = () => {
-    const apiurl = "http://localhost:80/buyerdb/add"
+    const apiurl = `http://${process.env.REACT_APP_IP}/buyerdb/add`
     const [ studentNumber, setStudentNumber ] = React.useState("");
     const [ password, setPassword ] = React.useState("");
     const [ date, setDate ] = React.useState("");
@@ -99,7 +99,7 @@ const BuyTicket = () => {
 
 
 const PurchaseStatus = () => {
-    const apiurl = "http://localhost:80/buyerdb/get"
+    const apiurl = `http://${process.env.REACT_APP_IP}/buyerdb/get`
     const [ studentNumber, setStudentNumber ] = React.useState("");
     const [ password, setPassword ] = React.useState("");
     const [ status, setStatus ] = React.useState({
