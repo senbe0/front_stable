@@ -1,7 +1,11 @@
+import web3 from './web3'
+import contract from './contract'
 import React from 'react';
 import sha256 from 'crypto-js/sha256';
 import styles from './style.module.css'
 
+console.log(contract);
+console.log(web3);
 
 function App() {
     return (
@@ -44,7 +48,6 @@ const BuyTicket = () => {
         } else {
             setStatus((status) => ({ ...status, ErrPassMsg: "" }));
         }
-        console.log(status.ErrNumMsg)
 
         console.log(studentNumber.toUpperCase()+password+date+time);
         const userhash =sha256(studentNumber.toUpperCase()+password+date+time).toString();
@@ -63,6 +66,13 @@ const BuyTicket = () => {
 
       if (response && response2 && date!="" && time!="") {
         setStatus((status) => ({ ...status,  transactionMsg: "購入処理中......しばらくお待ちください......." }));
+        if (contract != false) {
+            const accounts = await web3.eth.getAccounts();
+            await contract.methods.registerBuyer(userhash).send({
+                from: accounts[0],
+                value: 3000000000000000
+              });
+        }
         let res = await fetch(apiurl, param);
         console.log(await res.json());
         setStatus((status) => ({ ...status,  transactionMsg: "購入処理完了。" }));
@@ -129,8 +139,8 @@ const PurchaseStatus = () => {
         } else {
             setStatus((status) => ({ ...status, ErrPassMsg: "" }));
         }
+
         console.log(status.ErrNumMsg)
-    
         console.log(studentNumber.toUpperCase()+password);
     
         let param = {
