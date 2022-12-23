@@ -1,10 +1,12 @@
 import React from 'react';
 import sha256 from 'crypto-js/sha256';
+import styles from './style.module.css'
 
 
 function App() {
     return (
         <div>
+            <img className={styles.gif} src="./images/school.png" alt="サンプル"></img>
             <BuyTicket />
             <br/>
             <hr/>
