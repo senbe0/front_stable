@@ -1,6 +1,22 @@
 const path = require("path");
+const Dotenv = require('dotenv-webpack');
+const webpack = require('webpack')
 
 module.exports = {
+    target: 'web',
+    plugins: [
+        new Dotenv(),
+        new webpack.ProvidePlugin({
+            process: 'process/browser',
+          }),
+      ],
+      resolve: {
+        fallback: {
+          "fs": false,
+          "os": false,
+          "path": false
+        },
+      },
     mode: "development",
     devtool: "eval-source-map",
     entry: "./src/index.js",
