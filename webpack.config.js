@@ -6,9 +6,6 @@ module.exports = {
     target: 'web',
     plugins: [
         new Dotenv(),
-        new webpack.ProvidePlugin({
-            process: 'process/browser',
-          }),
       ],
       resolve: {
         fallback: {
